@@ -12,15 +12,15 @@ export class AppComponent implements OnInit {
   public currentQuestion = 'Click to get a new question!';
   public showAddQuestion = false;
   public questionForm: FormGroup;
-  
-  constructor(private questionService: QuestionService) {}
+
+  constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.questionForm = new FormGroup({question: new FormControl('')});
+    this.questionForm = new FormGroup({ question: new FormControl('') });
   }
-  
+
   public getQuestion() {
-    this.questionService.getRandomQuestion().subscribe(resp => {
+    this.questionService.getNewQuestion(this.currentQuestion).subscribe(resp => {
       this.currentQuestion = resp;
     });
   }
