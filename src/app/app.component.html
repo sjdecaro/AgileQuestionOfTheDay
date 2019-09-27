@@ -1,0 +1,23 @@
+<div>
+  <mat-toolbar color="primary">{{title}}</mat-toolbar>
+</div>
+<div class="question-text">
+  <p>{{currentQuestion}}</p>
+</div>
+<div class="question-button">
+  <button mat-raised-button color="primary" (click)="getQuestion()">Get Another Question</button>
+</div>
+<div class="question-button">
+  <button mat-raised-button color="basic" (click)="toggleQuestionForm()">Submit a Question</button>
+</div>
+<div class="submit-question" *ngIf="showAddQuestion">
+  <form [formGroup]="questionForm" autocomplete="off" novalidate (ngSubmit)="addNewQuestion(questionForm.value)">
+    <mat-form-field>
+      <label for="question">
+        Question
+      </label>
+      <input matInput id="question" type="text" formControlName="question">
+    </mat-form-field>
+    <button mat-raised-button color="basic" type="submit">Submit</button>
+  </form>
+</div>
