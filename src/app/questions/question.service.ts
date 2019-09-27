@@ -12,16 +12,21 @@ export class QuestionService {
 
   constructor() { console.log(questionRepository); }
 
-  public getRandomQuestion(): Observable<string> {
-    const count = questionRepository.length;
-    const randomIndex = Math.floor(Math.random() * count);
-    console.log(randomIndex);
-    return of(questionRepository[randomIndex]);
+  public getNewQuestion(question: any): Observable<string> {
+    let currentQuestion = question;
+
+    while (currentQuestion === question) {
+      const count = questionRepository.length;
+      const randomIndex = Math.floor(Math.random() * count);
+      currentQuestion = questionRepository[randomIndex];
+    }
+
+    return of(currentQuestion);
   }
 
-  public submitQuestion(question: any): Observable<any> {    
+  public submitQuestion(question: any): Observable<any> {
     questionRepository.push(question.question);
-    
+
     return of(question.question);
   }
 }
