@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { QuestionService } from './questions/question.service';
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
+    MatSnackBarModule,
     ReactiveFormsModule
   ],
   providers: [QuestionService],
