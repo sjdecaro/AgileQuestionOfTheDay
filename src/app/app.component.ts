@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { QuestionService } from './questions/question.service';
-import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-root",
@@ -13,7 +15,7 @@ export class AppComponent implements OnInit {
   public showAddQuestion = false;
   public questionForm: FormGroup;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.questionForm = new FormGroup({ question: new FormControl('') });
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
     console.log(question);
     this.questionService.submitQuestion(question).subscribe(() => {
       this.showAddQuestion = false;
+      this.snackBar.open(`Thanks for submitting a question! You asked: ${question.question}`, 'Done', { duration: 3000 });
     });
   }
 }
